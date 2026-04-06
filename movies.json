@@ -1,0 +1,105 @@
+[ 
+    {
+        "id": 1,
+        "title": "LOTR: The Fellowship of the Ring",
+        "director": "Peter Jackson",
+        "year": 2001,
+        "genre": "Fantasy",
+        "rating": 8.9,
+        "trilogy": "Lord of the Rings"
+    },
+    {
+        "id": 2,
+        "title": "LOTR: The Two Towers",
+        "director": "Peter Jackson",
+        "year": 2002,
+        "genre": "Fantasy",
+        "rating": 8.8,
+        "trilogy": "Lord of the Rings"
+    },
+    {
+        "id": 3,
+        "title": "LOTR: The Return of the King",
+        "director": "Peter Jackson",
+        "year": 2003,
+        "genre": "Fantasy",
+        "rating": 9.0,
+        "trilogy": "Lord of the Rings"
+    },
+    {
+        "id": 4,
+        "title": "The Hobbit: An Unexpected Journey",
+        "director": "Peter Jackson",
+        "year": 2012,
+        "genre": "Fantasy",
+        "rating": 7.8,
+        "trilogy": "The Hobbit"
+    },
+    {
+        "id": 5,
+        "title": "The Hobbit: The Desolation of Smaug",
+        "director": "Peter Jackson",
+        "year": 2013,
+        "genre": "Fantasy",
+        "rating": 7.8,
+        "trilogy": "The Hobbit"
+    },
+    {
+        "id": 6,
+        "title": "The Hobbit: The Battle of the Five Armies",
+        "director": "Peter Jackson",
+        "year": 2014,
+        "genre": "Fantasy",
+        "rating": 7.4,
+        "trilogy": "The Hobbit"
+    },
+    {
+        "id": 7,
+        "title": "Knives Out",
+        "director": "Rian Johnson",
+        "year": 2019,
+        "genre": "Mystery",
+        "rating": 7.9
+    },
+    {
+        "id": 8,
+        "title": "Glass Onion",
+        "director": "Rian Johnson",
+        "year": 2022,
+        "genre": "Mystery",
+        "rating": 7.1
+    },
+    {
+        "id": 9,
+        "title": "Get Out",
+        "director": "Jordan Peele",
+        "year": 2017,
+        "genre": "Horror",
+        "rating": 7.8
+    },
+    {
+        "id": 10,
+        "title": "mother!",
+        "director": "Darren Aronofsky",
+        "year": 2017,
+        "genre": "Horror",
+        "rating": 6.6
+    },
+    {
+        "id": 11,
+        "title": "The Lighthouse",
+        "director": "Robert Eggers",
+        "year": 2019,
+        "genre": "Horror",
+        "rating": 7.5
+        
+    },
+    {
+        "id": 12,
+        "title": "Nightcrawler",
+        "director": "Dan Gilroy",
+        "year": 2014,
+        "genre": "Thriller",
+        "rating": 7.8
+    }
+]
