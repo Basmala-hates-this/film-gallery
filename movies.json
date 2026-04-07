@@ -1,4 +1,6 @@
-[ 
+{
+  "$schema": "./schema.json",
+  "movies": [ 
     {
         "id": 1,
         "title": "LOTR: The Fellowship of the Ring",
@@ -6,7 +8,8 @@
         "year": 2001,
         "genre": "Fantasy",
         "rating": 8.9,
-        "trilogy": "Lord of the Rings"
+        "trilogy": "Lord of the Rings",
+        "poster": "photos/LOTR_followship_of_the_rings.jpg"
     },
     {
         "id": 2,
@@ -15,7 +18,8 @@
         "year": 2002,
         "genre": "Fantasy",
         "rating": 8.8,
-        "trilogy": "Lord of the Rings"
+        "trilogy": "Lord of the Rings",
+        "poster": "photos/the two towers.jpg"
     },
     {
         "id": 3,
@@ -24,7 +28,8 @@
         "year": 2003,
         "genre": "Fantasy",
         "rating": 9.0,
-        "trilogy": "Lord of the Rings"
+        "trilogy": "Lord of the Rings",
+        "poster": "photos/the return of the king.jpg"
     },
     {
         "id": 4,
@@ -33,7 +38,8 @@
         "year": 2012,
         "genre": "Fantasy",
         "rating": 7.8,
-        "trilogy": "The Hobbit"
+        "trilogy": "The Hobbit",
+        "poster": "photos/The Hobbit An Unexpected Journey.jpg"
     },
     {
         "id": 5,
@@ -42,7 +48,9 @@
         "year": 2013,
         "genre": "Fantasy",
         "rating": 7.8,
-        "trilogy": "The Hobbit"
+        "trilogy": "The Hobbit",
+        "poster": "photos/The Desolation of Smaug.jpg"
+
     },
     {
         "id": 6,
@@ -51,7 +59,8 @@
         "year": 2014,
         "genre": "Fantasy",
         "rating": 7.4,
-        "trilogy": "The Hobbit"
+        "trilogy": "The Hobbit",
+        "poster": "photos/The Battle of the Five Armies.jpg"
     },
     {
         "id": 7,
@@ -59,7 +68,8 @@
         "director": "Rian Johnson",
         "year": 2019,
         "genre": "Mystery",
-        "rating": 7.9
+        "rating": 7.9,
+        "poster": "photos/Knives Out.jpg"
     },
     {
         "id": 8,
@@ -67,7 +77,8 @@
         "director": "Rian Johnson",
         "year": 2022,
         "genre": "Mystery",
-        "rating": 7.1
+        "rating": 7.1,
+        "poster" : "photos/Glass Onion.jpg"
     },
     {
         "id": 9,
@@ -75,7 +86,8 @@
         "director": "Jordan Peele",
         "year": 2017,
         "genre": "Horror",
-        "rating": 7.8
+        "rating": 7.8,
+        "poster" :"photos/Get Out.jpg"
     },
     {
         "id": 10,
@@ -83,7 +95,8 @@
         "director": "Darren Aronofsky",
         "year": 2017,
         "genre": "Horror",
-        "rating": 6.6
+        "rating": 6.6,
+        "poster" : "photos/Mother!.jpg"
     },
     {
         "id": 11,
@@ -91,7 +104,8 @@
         "director": "Robert Eggers",
         "year": 2019,
         "genre": "Horror",
-        "rating": 7.5
+        "rating": 7.5,
+        "poster" : "photos/The Lighthouse.jpg"
         
     },
     {
@@ -100,6 +114,17 @@
         "director": "Dan Gilroy",
         "year": 2014,
         "genre": "Thriller",
-        "rating": 7.8
+        "rating": 7.8,
+        "poster" : "photos/Nightcrawler.jpg"
+    },
+    {
+        "id": 13,
+        "title": "The Great Gatsby",
+        "director": "Baz Luhrmann",
+        "year": 2013,
+        "genre": "Drama",
+        "rating": 7.2,
+        "poster" : "photos/the great gatsby.jpg"
     }
 ]
+}

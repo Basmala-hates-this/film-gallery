@@ -1,19 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Filmography Schema",
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "id": { "type": "integer" },
-      "title": { "type": "string" },
-      "director": { "type": "string" },
-      "year": { "type": "integer", "minimum": 1888, "maximum": 2026 },
-      "genre": { "type": "string", "enum": ["Fantasy", "Mystery", "Horror", "Thriller", "Sci-Fi"] },
-      "rating": { "type": "number", "minimum": 0, "maximum": 10 },
-      "poster": { "type": "string", "format": "uri" },
-      "description": { "type": "string" }
-    },
-    "required": ["id", "title", "director", "year", "genre", "rating"]
-  }
+  "type": "object",
+  "properties": {
+    "movies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "title": { "type": "string" },
+          "director": { "type": "string" },
+          "year": { "type": "integer", "minimum": 1888, "maximum": 2026 },
+          "genre": {
+            "type": "string",
+            "enum": ["Fantasy", "Mystery", "Horror", "Thriller", "Sci-Fi", "Drama"]
+          },
+          "rating": { "type": "number", "minimum": 0, "maximum": 10 },
+          "poster": { "type": "string" },
+          "trilogy": { "type": "string" }
+        },
+        "required": ["id", "title", "director", "year", "genre", "rating", "poster"]
+      }
+    }
+  },
+  "required": ["movies"]
 }

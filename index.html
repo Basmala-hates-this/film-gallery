@@ -19,9 +19,11 @@
                 <option value="Mystery">Mystery</option>
                 <option value="Horror">Horror</option>
                 <option value="Thriller">Thriller</option>
+                <option value="Drama">Drama</option>
             </select>
         </div>
     </header>
+    
 
     <main>
         <section class="results-info">
@@ -34,6 +36,20 @@
 
     <button id="back-to-top" title="Go to top">↑ Back to top</button>
 
-    <script src="app.js"></script>
+    
+
+    <div id="movie-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        
+        <img id="modal-poster" src="" alt="">
+        <h2 id="modal-title"></h2>
+        <p id="modal-info"></p>
+        <p id="modal-description"></p>
+
+        <a id="modal-link" href="#" target="_blank">View on IMDb</a>
+    </div>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
