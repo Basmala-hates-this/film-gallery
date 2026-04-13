@@ -1,10 +1,116 @@
 let movies = [];
 
+const ADMIN_PASS = "bruh2005";
+
+
+
 async function init() {
-    const res = await fetch('./movies.json');
-    const data = await res.json();
-     movies = data.movies;
+    const savedData = localStorage.getItem('unhinged_movies');
+    
+    if (savedData) {
+        movies = JSON.parse(savedData);
+    } else {
+        const res = await fetch('./movies.json');
+        const data = await res.json();
+        movies = data.movies;
+    }
     renderMovies(movies);
+}
+
+function loginAdmin() {
+    const pass = prompt("Enter Admin Password:");
+    if (pass === ADMIN_PASS) {
+        document.getElementById('admin-panel').style.display = "block";
+        document.body.classList.add("admin-active");
+        renderMovies(movies); 
+        alert("Admin Mode Activated.");
+        document.getElementById('admin-login-btn').style.display = "none";
+    }
+    else {
+        alert("Wrong password. what are u doing bruh?....");
+    }
+}
+
+async function addMovie() {
+    const btn = document.querySelector("#admin-panel button");
+    const fileInput = document.getElementById('new-poster');
+    const title = document.getElementById('new-title').value;
+
+    // 1. Basic Validation
+    if (!title || !fileInput.files[0]) {
+        alert("Please provide at least a title and a poster!");
+        return;
+    }
+
+    // 2. Deactivate button
+    btn.disabled = true;
+    btn.textContent = "Adding to Vault...";
+
+    // 3. Process the Image (Convert to Base64)
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+        const base64Image = reader.result;
+
+        const newMovie = {
+            id: Date.now(),
+            title: title,
+            director: document.getElementById('new-director').value,
+            year: parseInt(document.getElementById('new-year').value) || 2026,
+            genre: document.getElementById('new-genre').value,
+            rating: 5.0,
+            poster: base64Image // Now this is a string that works in <img> tags!
+        };
+
+        // 4. Update Data
+        movies.push(newMovie);
+        saveAndRefresh();
+
+        // 5. Reset Form & Reactivate Button
+        resetAdminForm();
+        btn.disabled = false;
+        btn.textContent = "Add to Collection";
+        alert(`${title} has been added!`);
+    };
+
+    reader.readAsDataURL(file);
+}
+
+function resetAdminForm() {
+    document.getElementById('new-title').value = "";
+    document.getElementById('new-director').value = "";
+    document.getElementById('new-year').value = "";
+    document.getElementById('new-genre').value = "Fantasy";
+    document.getElementById('new-poster').value = "";
+}
+
+function deleteMovie(id) {
+    if (confirm("Delete this masterpiece?")) {
+        movies = movies.filter(m => m.id !== id);
+        saveAndRefresh();
+    }
+}
+
+function saveAndRefresh() {
+    localStorage.setItem('unhinged_movies', JSON.stringify(movies));
+    renderMovies(movies);
+}
+
+function logoutAdmin() {
+    isAdmin = false; 
+   
+    document.getElementById('admin-panel').style.display = "none";
+    document.body.classList.remove("admin-active");
+
+    document.getElementById('new-title').value = "";
+    document.getElementById('new-director').value = "";
+    document.getElementById('new-year').value = "";
+    document.getElementById('new-poster').value = "";
+    renderMovies(movies);
+    document.getElementById('admin-login-btn').style.display = "block";
+
+    alert("Logged out successfully. Stay unhinged!");
 }
 
 function renderMovies(filteredList) {
@@ -19,12 +125,16 @@ function renderMovies(filteredList) {
     }
 
     grid.innerHTML = filteredList.map(m => `
-        <div class="movie-card" onclick="openModal(${m.id})">
-            <img src="${m.poster}" alt="${m.title}">
-            <div class="card-info">
-                <h3>${m.title}</h3>
-                <p>${m.year} | Dir: ${m.director}</p>
-                <span class="genre-tag">${m.genre}</span>
+        <div class="movie-card">
+            <button class="delete-btn" onclick="event.stopPropagation(); deleteMovie(${m.id})">Delete</button>
+            
+            <div onclick="openModal(${m.id})">
+                <img src="${m.poster}" alt="${m.title}">
+                <div class="card-info">
+                    <h3>${m.title}</h3>
+                    <p>${m.year} | Dir: ${m.director}</p>
+                    <span class="genre-tag">${m.genre}</span>
+                </div>
             </div>
         </div>
     `).join('');

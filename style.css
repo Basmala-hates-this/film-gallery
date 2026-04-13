@@ -1,5 +1,5 @@
 body {
-    background-color: #252627; 
+    background-color: #1a2836; 
     color: white;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -17,7 +17,7 @@ body {
     overflow: hidden;
     transition: transform 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 10px 10px  rgb(165, 124, 124);
+    box-shadow: 0 10px 15px  rgb(78, 54, 80);
 }
 
 
@@ -77,6 +77,7 @@ body {
 
 }
 
+
 /* i'm always fricking extra */
 .modal {
     display: none;
@@ -125,4 +126,73 @@ body {
     margin-top: 10px;
     color: #00d4ff;
     text-decoration: none;
+}
+
+
+/* panel */
+
+#admin-login-btn{
+   background-color: slateblue;
+   color: whitesmoke;
+  border-radius: 8px;
+    width: 10%;
+    height: 30px;
+}
+
+#new-title,#new-year,#new-director,#new-poster,#new-genre{
+    background-color: azure;
+    color: #272727;
+    border-radius: 8px;
+    width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+#add{
+    background-color: greenyellow;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    width: 30%;
+    height: 30px;
+    margin-left: 30%;
+}
+#add:disabled {
+    background-color: #555 !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: scale(1) !important; 
+}
+
+#exit{
+    background-color: crimson;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    width: 30%;
+    height: 30px;
+    margin-left: 30%;
+}
+
+
+#admin-panel {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 12px;
+    border: 1px dashed #e50914;
+}
+
+/*  */
+.delete-btn {
+    display: none; 
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.admin-active .delete-btn {
+    display: block; 
 }
