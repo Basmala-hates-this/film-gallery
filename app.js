@@ -63,11 +63,11 @@ async function addMovie() {
             poster: base64Image // Now this is a string that works in <img> tags!
         };
 
-        // 4. Update Data
+        // update data
         movies.push(newMovie);
         saveAndRefresh();
 
-        // 5. Reset Form & Reactivate Button
+        //  reset form & reactivate button.....still hate js
         resetAdminForm();
         btn.disabled = false;
         btn.textContent = "Add to Collection";
@@ -90,6 +90,70 @@ function deleteMovie(id) {
         movies = movies.filter(m => m.id !== id);
         saveAndRefresh();
     }
+}
+
+//....forgot about update till just now...
+let editId = null; // track which movie is being edited
+
+//  to fill the form with existing data
+function editMovie(id) {
+    const movie = movies.find(m => m.id === id);
+    if (!movie) return;
+
+    // set the global editId
+    editId = id;
+
+    // populate the form fields
+    document.getElementById('new-title').value = movie.title;
+    document.getElementById('new-director').value = movie.director;
+    document.getElementById('new-year').value = movie.year;
+    document.getElementById('new-genre').value = movie.genre;
+
+    // Change the button text to show we are in edit mode
+    const addBtn = document.getElementById('add');
+    addBtn.textContent = "Update Masterpiece";
+    addBtn.onclick = updateMovie; // Switch the click handler
+
+    // ccroll to the admin panel
+    document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+}
+
+//  to save the changes
+function updateMovie() {
+    const movieIndex = movies.findIndex(m => m.id === editId);
+    
+    if (movieIndex !== -1) {
+        // update the text fields
+        movies[movieIndex].title = document.getElementById('new-title').value;
+        movies[movieIndex].director = document.getElementById('new-director').value;
+        movies[movieIndex].year = parseInt(document.getElementById('new-year').value);
+        movies[movieIndex].genre = document.getElementById('new-genre').value;
+
+        // update poster if a new file was selected
+        const fileInput = document.getElementById('new-poster');
+        if (fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                movies[movieIndex].poster = reader.result;
+                finishUpdate();
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        } else {
+            finishUpdate();
+        }
+    }
+}
+
+function finishUpdate() {
+    saveAndRefresh();
+    resetAdminForm();
+    alert("Movie updated successfully!");
+    
+    // Reset the button back to "Add" mode
+    const addBtn = document.getElementById('add');
+    addBtn.textContent = "Add to Collection";
+    addBtn.onclick = addMovie;
+    editId = null;
 }
 
 function saveAndRefresh() {
@@ -124,20 +188,24 @@ function renderMovies(filteredList) {
         return;
     }
 
-    grid.innerHTML = filteredList.map(m => `
-        <div class="movie-card">
-            <button class="delete-btn" onclick="event.stopPropagation(); deleteMovie(${m.id})">Delete</button>
-            
-            <div onclick="openModal(${m.id})">
-                <img src="${m.poster}" alt="${m.title}">
-                <div class="card-info">
-                    <h3>${m.title}</h3>
-                    <p>${m.year} | Dir: ${m.director}</p>
-                    <span class="genre-tag">${m.genre}</span>
-                </div>
-            </div>
+    grid.innerHTML = filteredList.map(m =>
+        
+ ` <div class="movie-card">
+    <div class="admin-controls">
+        <button class="delete-btn" onclick="event.stopPropagation(); deleteMovie(${m.id})">Delete</button>
+        <button class="edit-btn" onclick="event.stopPropagation(); editMovie(${m.id})">Edit</button>
+    </div>
+    
+    <div onclick="openModal(${m.id})">
+        <img src="${m.poster}" alt="${m.title}">
+        <div class="card-info">
+            <h3>${m.title}</h3>
+            <p>${m.year} | Dir: ${m.director}</p>
+            <span class="genre-tag">${m.genre}</span>
         </div>
-    `).join('');
+    </div>
+</div>
+`).join('');
 }
 
 //toggle details

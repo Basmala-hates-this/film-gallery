@@ -182,17 +182,29 @@ body {
     border: 1px dashed #e50914;
 }
 
-/*  */
+
 .delete-btn {
     display: none; 
     background: #e50914;
     color: white;
-    border: none;
+    border: 2px solid black;
     padding: 5px;
     cursor: pointer;
     width: 100%;
+    margin-bottom: 5px;
+    border-radius: 8px;
+}
+.edit-btn{
+     display: none; 
+    background: #23e509;
+    color: white;
+    border: 2px solid black;
+    padding: 5px;
+    cursor: pointer;
+    width: 100%;
+      border-radius: 8px;
 }
 
-.admin-active .delete-btn {
-    display: block; 
+.admin-active .delete-btn,body.admin-active .edit-btn {
+    display: inline-block; 
 }
