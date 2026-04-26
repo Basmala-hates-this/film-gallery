@@ -1,6 +1,6 @@
 let movies = [];
 
-const ADMIN_PASS = "bruh2005";
+const ADMIN_PASS = "helloThere";
 
 
 async function init() {
