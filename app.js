@@ -3,19 +3,18 @@ let movies = [];
 const ADMIN_PASS = "bruh2005";
 
 
-
 async function init() {
-    const savedData = localStorage.getItem('unhinged_movies');
-    
-    if (savedData) {
-        movies = JSON.parse(savedData);
-    } else {
-        const res = await fetch('./movies.json');
+    try {
+        const res = await fetch('/api/movies'); // Fetch from our server
         const data = await res.json();
         movies = data.movies;
+        renderMovies(movies);
+    } catch (err) {
+        console.error("Failed to load movies:", err);
     }
-    renderMovies(movies);
 }
+
+
 
 function loginAdmin() {
     const pass = prompt("Enter Admin Password:");
@@ -60,7 +59,7 @@ async function addMovie() {
             year: parseInt(document.getElementById('new-year').value) || 2026,
             genre: document.getElementById('new-genre').value,
             rating: 5.0,
-            poster: base64Image // Now this is a string that works in <img> tags!
+            poster: base64Image //img
         };
 
         // update data
@@ -156,9 +155,22 @@ function finishUpdate() {
     editId = null;
 }
 
-function saveAndRefresh() {
-    localStorage.setItem('unhinged_movies', JSON.stringify(movies));
-    renderMovies(movies);
+async function saveAndRefresh() {
+    try {
+        const response = await fetch('/api/movies', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(movies) // Send the updated array to the server
+        });
+
+        if (response.ok) {
+            renderMovies(movies);
+        } else {
+            alert("Server failed to save the masterpiece.");
+        }
+    } catch (err) {
+        console.error("Error saving data:", err);
+    }
 }
 
 function logoutAdmin() {
@@ -201,6 +213,7 @@ function renderMovies(filteredList) {
         <div class="card-info">
             <h3>${m.title}</h3>
             <p>${m.year} | Dir: ${m.director}</p>
+            <p>Rating: ${m.rating}/10</p>
             <span class="genre-tag">${m.genre}</span>
         </div>
     </div>
@@ -224,7 +237,7 @@ function openModal(id) {
     document.getElementById("modal-poster").src = movie.poster;
     document.getElementById("modal-title").textContent = movie.title;
     document.getElementById("modal-info").textContent =
-        `${movie.year} | ${movie.genre} | Dir: ${movie.director}`;
+        `${movie.year} | ${movie.genre} | Dir: ${movie.director} | Rating: ${movie.rating}/10`;
     document.getElementById("modal-description").textContent =
         movie.description || "No description available.";
 
